@@ -1,0 +1,15 @@
+flutter_native_splash:
+  color: "#f7f7ea"
+  image: assets/logo/meals.png
+  branding: assets/logo/meals.png
+  color_dark: "#f7f7ea"
+  image_dark: assets/logo/meals.png
+  branding_dark: assets/logo/meals.png
+
+  android_12:
+    image: assets/logo/meals.png
+    icon_background_color: "#f7f7ea"
+    image_dark: assets/logo/meals.png
+    icon_background_color_dark: "#f7f7ea"
+
+  web: false
