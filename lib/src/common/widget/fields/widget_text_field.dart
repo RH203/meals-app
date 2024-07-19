@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:meals_app/src/constant/constant.dart';
 
 class WidgetTextField extends StatefulWidget {
-  const WidgetTextField({
-    super.key,
-    required this.label,
-    required this.hintText,
-    required this.validator,
-    required this.isPassword,
-  });
+  const WidgetTextField(
+      {super.key,
+      required this.label,
+      required this.hintText,
+      required this.validator,
+      required this.isPassword,
+      required this.controller});
 
   final String label, hintText;
   final String Function(String?) validator;
   final bool isPassword;
+  final TextEditingController controller;
 
   @override
   State<WidgetTextField> createState() => _WidgetTextFieldState();
@@ -31,6 +32,7 @@ class _WidgetTextFieldState extends State<WidgetTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: widget.validator,
+      controller: widget.controller,
       obscureText: _show,
       decoration: InputDecoration(
         contentPadding:
@@ -47,11 +49,28 @@ class _WidgetTextFieldState extends State<WidgetTextField> {
         labelStyle: Theme.of(context).textTheme.bodyLarge,
         hintText: widget.hintText,
         hintStyle: Theme.of(context).textTheme.bodyLarge,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Constant.blackishGrey, width: 2),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Constant.blackishGrey, width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Constant.darkRed, width: 2),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Constant.brightRed, width: 2),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(
+            color: Constant.blackishGrey,
+            width: 2,
+          ),
         ),
       ),
     );
