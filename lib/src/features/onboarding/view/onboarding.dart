@@ -84,12 +84,6 @@ class _OnboardingState extends State<Onboarding> {
                       _indexPage == 1
                           ? TextButton(
                               onPressed: () => context.go('/sign-in'),
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 10,
-                                ),
-                              ),
                               child: const Text(
                                 "Get Started",
                                 style: TextStyle(
