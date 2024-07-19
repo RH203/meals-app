@@ -11,6 +11,9 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   String _validator(String? value) {
     return "";
   }
@@ -62,6 +65,7 @@ class _SignInState extends State<SignIn> {
                             hintText: "example@gmail.com",
                             validator: _validator,
                             isPassword: false,
+                            controller: _emailController,
                           ),
                           const SizedBox(
                             height: 20,
@@ -71,6 +75,7 @@ class _SignInState extends State<SignIn> {
                             hintText: "Password",
                             validator: _validator,
                             isPassword: true,
+                            controller: _passwordController,
                           )
                         ],
                       ),
