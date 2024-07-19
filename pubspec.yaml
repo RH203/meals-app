@@ -35,6 +35,7 @@ flutter:
   assets:
     - assets/logo/
     - assets/lottie/
+    - assets/image/dummy_product/
   fonts:
     - family: Montserrat
       fonts:
