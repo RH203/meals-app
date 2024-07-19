@@ -15,6 +15,7 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _passwordController = TextEditingController();
 
   String _validator(String? value) {
+    // TODO: VALIDATOR
     return "";
   }
 
@@ -34,7 +35,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                    children: <Widget>[
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
@@ -59,7 +60,7 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       Column(
-                        children: [
+                        children: <Widget>[
                           WidgetTextField(
                             label: "Email",
                             hintText: "example@gmail.com",
