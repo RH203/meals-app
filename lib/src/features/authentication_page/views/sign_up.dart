@@ -22,6 +22,16 @@ class _SignUpState extends State<SignUp> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _firstnameController.dispose();
+    _lastnameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(

@@ -61,93 +61,154 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                 ),
               ),
-              // Trending recipe
+
               SliverToBoxAdapter(
                 child: Container(
-                  margin: const EdgeInsets.only(top: 70),
-                  height: 315,
-                  child: Column(
+                  margin: const EdgeInsets.only(top: 40),
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      SizedBox(
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Trending Recipes",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(fontSize: 20),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                AppLogger.debug("View all pressed");
-                              },
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.all(0),
-                                backgroundColor: Constant.warmWhite,
-                              ),
-                              child: Text(
-                                "View All",
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ),
-                          ],
-                        ),
+                      Text(
+                        "Category",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontSize: 20),
                       ),
-                      Expanded(
-                        child: GridView.builder(
-                          scrollDirection: Axis.horizontal,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                          ),
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 8),
-                              decoration: BoxDecoration(
-                                color: Colors.red[(index + 1) * 100],
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: 300,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.asset(
-                                        "assets/image/dummy_product/image.png",
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    "Dish Title",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .copyWith(
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                  Text(
-                                    "Lorem ipsum dolor sit amet consectetur. Urna nibh amet consectetur metus gravida. Phasellus erat tristique massa.",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .copyWith(
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
+                      TextButton(
+                        onPressed: () {
+                          AppLogger.debug("View all pressed");
+                        },
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.all(0),
+                          backgroundColor: Constant.warmWhite,
+                        ),
+                        child: Text(
+                          "View All",
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                     ],
+                  ),
+                ),
+              ),
+
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 120,
+                  child: GridView.builder(
+                    itemCount: 20,
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                    ),
+                    itemBuilder: (context, index) {
+                      AppLogger.debug("Item: $index");
+                      return Column(
+                        children: <Widget>[
+                          ClipOval(
+                            child: Image.asset(
+                              "assets/image/dummy_product/image.png",
+                              width: 70,
+                              height: 70,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Text(
+                            "Category Title",
+                            textAlign: TextAlign.center,
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
+
+              // Trending recipe
+              SliverToBoxAdapter(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Trending Recipes",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontSize: 20),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          AppLogger.debug("View all pressed");
+                        },
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.all(0),
+                          backgroundColor: Constant.warmWhite,
+                        ),
+                        child: Text(
+                          "View All",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 270,
+                  child: GridView.builder(
+                    itemCount: 20,
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 20,
+                    ),
+                    itemBuilder: (context, index) {
+                      AppLogger.debug("Item: $index");
+                      return Column(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 270,
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                              child: Image.asset(
+                                "assets/image/dummy_product/image.png",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "Dish Title",
+                            style:
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                          ),
+                          Text(
+                            "Lorem ipsum dolor sit amet consectetur. Urna nibh amet consectetur metus gravida. Phasellus erat tristique massa.",
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                          )
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),

@@ -33,7 +33,7 @@ class _WidgetTextFieldState extends State<WidgetTextField> {
     return TextFormField(
       validator: widget.validator,
       controller: widget.controller,
-      obscureText: _show,
+      obscureText: widget.isPassword ? _show : false,
       decoration: InputDecoration(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
