@@ -49,9 +49,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   )
                 : Center(
                     child: LoadingAnimationWidget.flickr(
-                        leftDotColor: Constant.darkRed,
-                        rightDotColor: Constant.brightRed,
-                        size: 10),
+                      leftDotColor: Constant.darkRed,
+                      rightDotColor: Constant.brightRed,
+                      size: 70,
+                    ),
                   ),
           );
         },
