@@ -8,12 +8,6 @@ class AppTheme {
     brightness: Brightness.light,
     scaffoldBackgroundColor: Constant.warmWhite,
     dialogBackgroundColor: Constant.warmWhite,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: IconButton.styleFrom(
-        backgroundColor: Constant.darkRed,
-        foregroundColor: Constant.white,
-      ),
-    ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         backgroundColor: Constant.darkRed,
