@@ -3,6 +3,7 @@ import 'package:meals_app/src/features/authentication_page/views/sign_in.dart';
 import 'package:meals_app/src/features/authentication_page/views/sign_up.dart';
 import 'package:meals_app/src/features/homescreen/views/homescreen.dart';
 import 'package:meals_app/src/features/onboarding/view/onboarding.dart';
+import 'package:meals_app/src/features/search_page/views/search_page.dart';
 
 class AppRouter {
   AppRouter._();
@@ -27,6 +28,10 @@ class AppRouter {
         path: '/sign-up',
         builder: (context, state) => const SignUp(),
       ),
+      GoRoute(
+        path: '/search-page',
+        builder: (context, state) => const SearchPage(),
+      )
     ],
   );
 }
