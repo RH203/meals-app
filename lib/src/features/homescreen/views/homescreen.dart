@@ -143,6 +143,7 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                     itemBuilder: (context, index) {
                       return Column(
+                        mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           SizedBox(
                             width: 270,
@@ -163,6 +164,7 @@ class _HomescreenState extends State<Homescreen> {
                                 Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       fontWeight: FontWeight.w600,
                                     ),
+                            textAlign: TextAlign.start,
                           ),
                           Text(
                             "Lorem ipsum dolor sit amet consectetur. Urna nibh amet consectetur metus gravida. Phasellus erat tristique massa.",
