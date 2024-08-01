@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meals_app/src/constant/constant.dart';
 import 'package:meals_app/src/features/homescreen/views/category_screen.dart';
+import 'package:meals_app/src/features/homescreen/views/recipe_of_the_day.dart';
 import 'package:meals_app/src/utils/app_logger.dart';
 
 class Homescreen extends StatefulWidget {
@@ -44,22 +45,20 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                   )
                 ],
-                title: Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        "Hello Raihan!",
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      Text(
-                        "What would you like to make ?",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .copyWith(fontSize: 16),
-                      ),
-                    ],
-                  ),
+                title: Column(
+                  children: [
+                    Text(
+                      "Hello Raihan!",
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                    Text(
+                      "What would you like to make ?",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(fontSize: 16),
+                    ),
+                  ],
                 ),
               ),
 
@@ -130,57 +129,9 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
 
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 270,
-                  child: GridView.builder(
-                    itemCount: 20,
-                    scrollDirection: Axis.horizontal,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 20,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          SizedBox(
-                            width: 270,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                              ),
-                              child: Image.asset(
-                                "assets/image/dummy_product/image.png",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "Dish Title",
-                            style:
-                                Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                            textAlign: TextAlign.start,
-                          ),
-                          Text(
-                            "Lorem ipsum dolor sit amet consectetur. Urna nibh amet consectetur metus gravida. Phasellus erat tristique massa.",
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                          )
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ),
+              RecipeOfTheDay(),
 
-              // Trending recipe
+              //  recipe Of the day
               SliverToBoxAdapter(
                 child: Container(
                   margin: const EdgeInsets.only(top: 10),
@@ -189,7 +140,7 @@ class _HomescreenState extends State<Homescreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Trending Recipes",
+                        "Recipe of the day",
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge!
@@ -223,45 +174,89 @@ class _HomescreenState extends State<Homescreen> {
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       mainAxisSpacing: 20,
+                      childAspectRatio: 3 / 2,
                     ),
                     itemBuilder: (context, index) {
-                      return Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 270,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                              ),
-                              child: Image.asset(
-                                "assets/image/dummy_product/image.png",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "Dish Title",
-                            style:
-                                Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      fontWeight: FontWeight.w600,
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Constant.warmWhite,
+                        ),
+                        child: GestureDetector(
+                          onTap: () => AppLogger.debug("Card onTap: [$index]"),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/image/dummy_product/image.png",
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                          ),
-                          Text(
-                            "Lorem ipsum dolor sit amet consectetur. Urna nibh amet consectetur metus gravida. Phasellus erat tristique massa.",
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      fontWeight: FontWeight.w600,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      "Dish title",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                     ),
-                          )
-                        ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Chip(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    label: Text(
+                                      "Pie",
+                                    ),
+                                    labelStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Chip(
+                                      label: Text(
+                                        "Italian",
+                                      ),
+                                      labelStyle: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       );
                     },
                   ),
                 ),
               ),
 
-              // Trending recipe
+              //  recipe Of the day
               SliverToBoxAdapter(
                 child: Container(
                   margin: const EdgeInsets.only(top: 10),
@@ -270,7 +265,7 @@ class _HomescreenState extends State<Homescreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Trending Recipes",
+                        "Recipe of the day",
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge!
@@ -304,45 +299,89 @@ class _HomescreenState extends State<Homescreen> {
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       mainAxisSpacing: 20,
+                      childAspectRatio: 3 / 2,
                     ),
                     itemBuilder: (context, index) {
-                      return Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 270,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                              ),
-                              child: Image.asset(
-                                "assets/image/dummy_product/image.png",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "Dish Title",
-                            style:
-                                Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      fontWeight: FontWeight.w600,
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Constant.warmWhite,
+                        ),
+                        child: GestureDetector(
+                          onTap: () => AppLogger.debug("Card onTap: [$index]"),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/image/dummy_product/image.png",
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                          ),
-                          Text(
-                            "Lorem ipsum dolor sit amet consectetur. Urna nibh amet consectetur metus gravida. Phasellus erat tristique massa.",
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      fontWeight: FontWeight.w600,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      "Dish title",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                     ),
-                          )
-                        ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Chip(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    label: Text(
+                                      "Pie",
+                                    ),
+                                    labelStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Chip(
+                                      label: Text(
+                                        "Italian",
+                                      ),
+                                      labelStyle: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       );
                     },
                   ),
                 ),
               ),
 
-              // Trending recipe
+              //  recipe Of the day
               SliverToBoxAdapter(
                 child: Container(
                   margin: const EdgeInsets.only(top: 10),
@@ -351,7 +390,7 @@ class _HomescreenState extends State<Homescreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Trending Recipes",
+                        "Recipe of the day",
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge!
@@ -385,38 +424,82 @@ class _HomescreenState extends State<Homescreen> {
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       mainAxisSpacing: 20,
+                      childAspectRatio: 3 / 2,
                     ),
                     itemBuilder: (context, index) {
-                      return Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 270,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                              ),
-                              child: Image.asset(
-                                "assets/image/dummy_product/image.png",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "Dish Title",
-                            style:
-                                Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      fontWeight: FontWeight.w600,
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Constant.warmWhite,
+                        ),
+                        child: GestureDetector(
+                          onTap: () => AppLogger.debug("Card onTap: [$index]"),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/image/dummy_product/image.png",
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                          ),
-                          Text(
-                            "Lorem ipsum dolor sit amet consectetur. Urna nibh amet consectetur metus gravida. Phasellus erat tristique massa.",
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      fontWeight: FontWeight.w600,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      "Dish title",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                     ),
-                          )
-                        ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Chip(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    label: Text(
+                                      "Pie",
+                                    ),
+                                    labelStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Chip(
+                                      label: Text(
+                                        "Italian",
+                                      ),
+                                      labelStyle: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       );
                     },
                   ),
