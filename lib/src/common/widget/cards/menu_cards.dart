@@ -44,8 +44,7 @@ class _MenuCardsState extends State<MenuCards> {
               text: moreText,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w600,
-                    color:
-                        Colors.blue,
+                    color: Colors.blue,
                     decoration: TextDecoration.underline,
                   ),
             ),
@@ -82,7 +81,7 @@ class _MenuCardsState extends State<MenuCards> {
           Column(
             children: <Widget>[
               SizedBox(
-                height: 170,
+                height: 180,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
