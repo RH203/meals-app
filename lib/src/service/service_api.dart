@@ -44,6 +44,7 @@ class ServiceApi {
   Future<List<List<DetailMealModel>>> fetchMealData(String url) async {
     try {
       List<List<DetailMealModel>> allMeals = [];
+      
       for (int i = 0; i < 10; i++) {
         final Response response = await _dio.get(url);
 
