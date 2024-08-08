@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meals_app/src/common/widget/buttons/primary_buttons.dart';
 import 'package:meals_app/src/common/widget/page_view/onboarding_view.dart';
 import 'package:meals_app/src/constant/constant.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -82,17 +83,12 @@ class _OnboardingState extends State<Onboarding> {
                         ),
                       ),
                       _indexPage == 1
-                          ? TextButton(
-                              onPressed: () => context.go('/sign-in'),
-                              child: const Text(
-                                "Get Started",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w500,
-                                ),
+                          ? Expanded(
+                              child: PrimaryButtons(
+                                title: "Get Started",
+                                onTap: () => context.go('/sign-in'),
                               ),
-                            ).animate().fadeIn().scale()
+                            ).animate().slideY(duration: 800.ms)
                           : IconButton(
                               onPressed: _onPageChange,
                               icon: const Icon(

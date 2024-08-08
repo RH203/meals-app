@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meals_app/src/common/widget/buttons/primary_buttons.dart';
 import 'package:meals_app/src/common/widget/fields/widget_text_field.dart';
 import 'package:meals_app/src/constant/constant.dart';
 
@@ -88,25 +89,10 @@ class _SignInState extends State<SignIn> {
                           )
                         ],
                       ),
-                      TextButton(
-                        onPressed: () => context.go('/sign-up'),
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 40,
-                            vertical: 10,
-                          ),
-                        ),
-                        child: Text(
-                          "Sign in",
-                          style:
-                              Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    fontSize: 25,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w500,
-                                    color: Constant.warmWhite,
-                                  ),
-                        ),
-                      )
+                      PrimaryButtons(
+                        title: "Sign In",
+                        onTap: () => context.go('/sign-up'),
+                      ),
                     ],
                   ),
                 ),
