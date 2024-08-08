@@ -24,7 +24,7 @@ class _RecipeOfTheDayState extends State<RecipeOfTheDay> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return SizedBox(
-              height: 270,
+              height: 290,
               child: Skeletonizer(
                 enabled: true,
                 child: GridView.builder(
@@ -56,13 +56,13 @@ class _RecipeOfTheDayState extends State<RecipeOfTheDay> {
             final allMeals = snapshot.data!.expand((i) => i).toList();
 
             return SizedBox(
-              height: 270,
+              height: 290,
               child: GridView.builder(
                 itemCount: allMeals.length,
                 scrollDirection: Axis.horizontal,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
-                  mainAxisSpacing: 20,
+                  mainAxisSpacing: 10,
                   childAspectRatio: 3 / 2,
                 ),
                 itemBuilder: (context, index) {
