@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MenuCards extends StatefulWidget {
   const MenuCards({
@@ -87,9 +88,9 @@ class _MenuCardsState extends State<MenuCards> {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                  child: Image.network(
-                    widget.image,
-                    fit: BoxFit.cover,
+                  child: FadeInImage(
+                    image: NetworkImage(widget.image),
+                    placeholder: MemoryImage(kTransparentImage),
                   ),
                 ),
               ),
