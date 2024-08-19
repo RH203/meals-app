@@ -27,6 +27,7 @@ dependencies:
   riverpod_annotation: ^3.0.0-dev.3
   skeletonizer: ^1.4.2
   transparent_image: ^2.0.1
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:

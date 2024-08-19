@@ -17,8 +17,12 @@ class Constant {
   static const String randomMealUrl =
       "https://themealdb.com/api/json/v1/1/random.php";
 
+  // Search meal by name
+  static const String searchByName =
+      "https://themealdb.com/api/json/v1/1/search.php?s=";
+
   // Category icon
-  static Map<String, Icon> categoryIcons = {
+  static const Map<String, Icon> categoryIcons = {
     "Beef": const Icon(Icons.food_bank, color: Colors.red),
     "Chicken": const Icon(Icons.local_dining, color: Colors.orange),
     "Dessert": const Icon(Icons.cake, color: Colors.pink),
