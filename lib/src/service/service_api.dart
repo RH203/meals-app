@@ -44,7 +44,7 @@ class ServiceApi {
   Future<List<List<DetailMealModel>>> fetchMealData(String url) async {
     try {
       List<List<DetailMealModel>> allMeals = [];
-      
+
       for (int i = 0; i < 10; i++) {
         final Response response = await _dio.get(url);
 
@@ -80,6 +80,43 @@ class ServiceApi {
           "Exception: An error occurred while fetching meal data. URL: $url, Error: $error");
       throw Exception(
           "An unexpected error occurred while fetching meal data from $url. Error: $error");
+    }
+  }
+
+  Future<List<DetailMealModel>> searchMealByName(
+      String nameMeal, String url) async {
+    try {
+      final Response response = await _dio.get("$url$nameMeal");
+
+      if (response.statusCode == 200) {
+        List<dynamic> mealJson = response.data["meals"];
+        List<DetailMealModel> meals =
+            mealJson.map((json) => DetailMealModel.fromJson(json)).toList();
+        return meals;
+      } else {
+        String statusMessage = response.statusMessage ?? "Unknown error";
+
+        AppLogger.error(
+            "Failed to fetch meal data. URL: $url$nameMeal, Status Code: ${response.statusCode}, Status Message: $statusMessage");
+
+        throw Exception(
+            "Failed to fetch meal data. Server responded with status code ${response.statusCode}: $statusMessage");
+      }
+    } on DioException catch (error) {
+      int? statusCode = error.response?.statusCode;
+      String statusMessage = error.response?.statusMessage ?? "Unknown error";
+      String errorMessage = error.message ?? "Unknown Dio error";
+
+      AppLogger.error(
+          "DioException: Failed to fetch meal data. URL: $url$nameMeal, Status Code: $statusCode, Status Message: $statusMessage, Error Message: $errorMessage");
+
+      throw Exception(
+          "Failed to fetch meal data from $url$nameMeal. Status Code: $statusCode, Status Message: $statusMessage, Error Message: $errorMessage");
+    } catch (error) {
+      AppLogger.error(
+          "Exception: An unexpected error occurred while fetching meal data. URL: $url$nameMeal, Error: $error");
+      throw Exception(
+          "An unexpected error occurred while fetching meal data from $url$nameMeal. Error: $error");
     }
   }
 }
